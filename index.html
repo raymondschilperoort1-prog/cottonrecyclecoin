@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CottonRecycleCoin</title>
+    <link rel="icon" href="logo.png" />
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        header {
+            background: #222;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .lang {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+        .lang button {
+            margin-left: 5px;
+        }
+        .container {
+            padding: 2rem;
+        }
+        #adminSection {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #eee;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CottonRecycleCoin (CRC)</h1>
+        <div class="lang">
+            <button onclick="switchLang('en')">🇬🇧</button>
+            <button onclick="switchLang('nl')">🇳🇱</button>
+        </div>
+    </header>
+    <div class="container">
+        <p id="description">
+            Welcome to CottonRecycleCoin – a sustainable cryptocurrency built to reward textile recycling!
+        </p>
+        <div>
+            <button onclick="connectWallet()">Connect Wallet</button>
+            <p><strong>Your balance:</strong> <span id="balance">-</span> CRC</p>
+        </div>
+
+        <div id="adminLogin">
+            <h3>Admin Login</h3>
+            <input type="password" id="adminPassword" placeholder="Enter password" />
+            <button onclick="adminLogin()">Login</button>
+        </div>
+
+        <div id="adminSection">
+            <h3>Admin Panel</h3>
+            <input type="text" id="recipient" placeholder="Recipient address" />
+            <input type="number" id="amount" placeholder="Amount" />
+            <button onclick="rewardRecycling()">Reward Recycling</button>
+            <br/><br/>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const contractAddress = "0x0E8e8387DAfB94DbcdCA41352c578631A3448B12";
+        const abi = [...]; // <-- ABI toevoegen als je functies live wilt gebruiken
+
+        let isAdmin = false;
+
+        function switchLang(lang) {
+            const desc = document.getElementById("description");
+            if (lang === "nl") {
+                desc.innerText = "Welkom bij CottonRecycleCoin – een duurzame munt die textielrecycling beloont!";
+            } else {
+                desc.innerText = "Welcome to CottonRecycleCoin – a sustainable cryptocurrency built to reward textile recycling!";
+            }
+        }
+
+        function connectWallet() {
+            alert("Connecting wallet (functionality coming soon)");
+        }
+
+        function adminLogin() {
+            const password = document.getElementById("adminPassword").value;
+            if (password === "crcadmin") {
+                isAdmin = true;
+                document.getElementById("adminSection").style.display = "block";
+                document.getElementById("adminLogin").style.display = "none";
+            } else {
+                alert("Incorrect password");
+            }
+        }
+
+        function logout() {
+            isAdmin = false;
+            document.getElementById("adminSection").style.display = "none";
+            document.getElementById("adminLogin").style.display = "block";
+        }
+
+        function rewardRecycling() {
+            alert("Rewarding recycling (functionality coming soon)");
+        }
+    </script>
+</body>
+</html>
