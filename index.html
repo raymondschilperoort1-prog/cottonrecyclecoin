@@ -1,102 +1,173 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CottonRecycleCoin</title>
-    <link rel="icon" href="logo.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CottonRecycleCoin (CRC)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
+        body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+        header, footer { background: #2c3e50; color: white; padding: 1rem; display: flex; align-items: center; justify-content: space-between; }
+        header img { height: 50px; margin-left: 1rem; }
+        header h1, header p { margin: 0; padding: 0 1rem; text-align: left; }
+        main { padding: 2rem; }
+        nav { position: absolute; top: 10px; right: 10px; }
+        nav img { width: 24px; height: 16px; margin-left: 0.5rem; cursor: pointer; }
+        .chart-container, .buy-container, .donate-container, .info-container, .admin-login-container, .admin-container {
+            max-width: 700px; margin: 2rem auto; background: white; padding: 2rem;
+            border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); 
         }
-        header {
-            background: #222;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        .lang {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-        }
-        .lang button {
-            margin-left: 5px;
-        }
-        .container {
-            padding: 2rem;
-        }
-        #adminSection {
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #eee;
-            display: none;
-        }
+        input, button { margin-top: 1rem; display: block; width: 100%; padding: 0.5rem; }
+        .logout-button { background-color: #c0392b; color: white; border: none; padding: 0.5rem; margin-top: 1rem; cursor: pointer; }
     </style>
 </head>
 <body>
+    <nav>
+        <img src="https://flagcdn.com/w40/nl.png" onclick="switchLanguage('nl')" alt="Nederlands">
+        <img src="https://flagcdn.com/w40/gb.png" onclick="switchLanguage('en')" alt="English">
+    </nav>
     <header>
-        <h1>CottonRecycleCoin (CRC)</h1>
-        <div class="lang">
-            <button onclick="switchLang('en')">🇬🇧</button>
-            <button onclick="switchLang('nl')">🇳🇱</button>
+        <img src="/mnt/data/A_logo_for_CottonRecycleCoin_(CRC)_is_centered_in_.png" alt="CRC Logo">
+        <div>
+            <h1 id="title">CottonRecycleCoin (CRC)</h1>
+            <p id="subtitle">De duurzame cryptomunt voor katoenrecycling</p>
         </div>
     </header>
-    <div class="container">
-        <p id="description">
-            Welcome to CottonRecycleCoin – a sustainable cryptocurrency built to reward textile recycling!
-        </p>
-        <div>
-            <button onclick="connectWallet()">Connect Wallet</button>
-            <p><strong>Your balance:</strong> <span id="balance">-</span> CRC</p>
-        </div>
+    <main>
+        <section class="info-container">
+            <h2 id="info-title">Over CottonRecycleCoin (CRC)</h2>
+            <p id="info-text-1">
+                CottonRecycleCoin (CRC) is een innovatieve cryptocurrency speciaal ontwikkeld voor de katoenrecyclingindustrie. Onze missie is om duurzaamheid te belonen via blockchaintechnologie.
+            </p>
+            <p id="info-text-2">
+                Elke keer dat katoen wordt gerecycled, wordt dit geregistreerd via ons smart contract en ontvangen betrokken partijen een beloning in CRC. Dankzij onze transparante vestingstructuur, een deflatoir model via coin burning en de mogelijkheid om direct via DEX te handelen, is CRC een krachtige tool voor een groenere toekomst.
+            </p>
+        </section>
 
+        <section class="chart-container">
+            <h2 id="chart-title">FinanciÃ«le prestaties van de coin</h2>
+            <canvas id="crcChart"></canvas>
+        </section>
 
-        
-    </div>
+        <section class="buy-container">
+            <h2 id="buy-title">Koop CottonRecycleCoin (CRC)</h2>
+            <p id="buy-desc">Verbind je wallet en koop direct CRC tokens via onze DEX integratie</p>
+            <iframe src="https://app.uniswap.org/#/swap?outputCurrency=0xf7B1b67fCf31449c464150c8Cb1F97Ed65c1E726&chain=polygon" height="500" width="100%" style="border:0; border-radius:12px;"></iframe>
+        </section>
+
+        <section class="donate-container">
+            <h2 id="donate-title">Stuur ons rechtstreeks CRC of MATIC</h2>
+            <p id="donate-desc">Wil je bijdragen aan katoenrecycling? Stuur CRC of MATIC naar onderstaand adres.</p>
+            <input type="text" id="donationAddress" value="0xf7B1b67fCf31449c464150c8Cb1F97Ed65c1E726" readonly>
+            <button onclick="copyAddress()">ðŸ“‹ Adres kopiÃ«ren</button>
+            <br><br>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0xf7B1b67fCf31449c464150c8Cb1F97Ed65c1E726" alt="QR code voor betaling">
+        </section>
+
+        <section class="admin-login-container" id="admin-login">
+            <h2>Admin Login</h2>
+            <input type="password" id="adminPassword" placeholder="Admin wachtwoord">
+            <button onclick="checkAdmin()">Inloggen als Admin</button>
+        </section>
+
+        <section class="admin-container" id="admin-container" style="display:none;">
+            <h2>Admin Dashboard</h2>
+            <button onclick="connectWallet()">Verbind Wallet</button>
+            <input type="text" placeholder="Ontvanger adres">
+            <input type="number" placeholder="Aantal tokens">
+            <input type="email" placeholder="Email notificatie (optioneel)">
+            <button>Verstuur CRC</button>
+            <hr>
+            <h3>Vesting instellen</h3>
+            <input type="text" placeholder="Beneficiary adres">
+            <input type="number" placeholder="Aantal tokens voor vesting">
+            <input type="datetime-local" placeholder="Start datum">
+            <input type="number" placeholder="Cliff (seconden)">
+            <input type="number" placeholder="Duur (seconden)">
+            <button>Instellen Vesting</button>
+            <button class="logout-button" onclick="logoutAdmin()">Uitloggen</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 CottonRecycleCoin B.V. | info@cottonrecyclecoin.com</p>
+    </footer>
 
     <script>
-        const contractAddress = "0x0E8e8387DAfB94DbcdCA41352c578631A3448B12";
-        const abi = [...]; // <-- ABI toevoegen als je functies live wilt gebruiken
+        const adminWachtwoord = "cottonadmin";
 
-        let isAdmin = false;
-
-        function switchLang(lang) {
-            const desc = document.getElementById("description");
-            if (lang === "nl") {
-                desc.innerText = "Welkom bij CottonRecycleCoin – een duurzame munt die textielrecycling beloont!";
+        function checkAdmin() {
+            const wachtwoord = document.getElementById("adminPassword").value;
+            if (wachtwoord === adminWachtwoord) {
+                document.getElementById("admin-container").style.display = "block";
+                document.getElementById("admin-login").style.display = "none";
             } else {
-                desc.innerText = "Welcome to CottonRecycleCoin – a sustainable cryptocurrency built to reward textile recycling!";
+                alert("Wachtwoord onjuist");
             }
         }
 
-        function connectWallet() {
-            alert("Connecting wallet (functionality coming soon)");
+        function logoutAdmin() {
+            document.getElementById("admin-container").style.display = "none";
+            document.getElementById("admin-login").style.display = "block";
+            document.getElementById("adminPassword").value = "";
         }
 
-        function adminLogin() {
-            const password = document.getElementById("adminPassword").value;
-            if (password === "crcadmin") {
-                isAdmin = true;
-                document.getElementById("adminSection").style.display = "block";
-                document.getElementById("adminLogin").style.display = "none";
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    alert('Wallet verbonden: ' + accounts[0]);
+                } catch (err) {
+                    console.error('Verbinding mislukt', err);
+                }
             } else {
-                alert("Incorrect password");
+                alert('Installeer MetaMask!');
             }
         }
 
-        function logout() {
-            isAdmin = false;
-            document.getElementById("adminSection").style.display = "none";
-            document.getElementById("adminLogin").style.display = "block";
+        function switchLanguage(lang) {
+            if (lang === 'en') {
+                document.getElementById('title').innerText = 'CottonRecycleCoin (CRC)';
+                document.getElementById('subtitle').innerText = 'The sustainable cryptocurrency for cotton recycling';
+                document.getElementById('info-title').innerText = 'About CottonRecycleCoin (CRC)';
+                document.getElementById('info-text-1').innerText = 'CottonRecycleCoin (CRC) is an innovative cryptocurrency specifically designed for the cotton recycling industry. Our mission is to reward sustainability through blockchain technology.';
+                document.getElementById('info-text-2').innerText = 'Every time cotton is recycled, it is recorded via our smart contract and involved parties receive a reward in CRC. With a transparent vesting structure, deflationary coin burning model, and DEX integration, CRC is a powerful tool for a greener future.';
+                document.getElementById('chart-title').innerText = 'Financial performance of the coin';
+                document.getElementById('buy-title').innerText = 'Buy CottonRecycleCoin (CRC)';
+                document.getElementById('buy-desc').innerText = 'Connect your wallet and directly purchase CRC tokens via our DEX integration';
+                document.getElementById('donate-title').innerText = 'Send us CRC or MATIC directly';
+                document.getElementById('donate-desc').innerText = 'Want to contribute to cotton recycling? Send CRC or MATIC to the address below.';
+            } else {
+                location.reload(); // herlaad om terug te gaan naar Nederlands
+            }
         }
 
-        function rewardRecycling() {
-            alert("Rewarding recycling (functionality coming soon)");
+        const ctx = document.getElementById('crcChart').getContext('2d');
+        const crcChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'],
+                datasets: [{
+                    label: 'CRC koers in $',
+                    data: [0.01, 0.013, 0.012, 0.015, 0.017, 0.016, 0.02],
+                    borderColor: 'green',
+                    backgroundColor: 'rgba(0, 128, 0, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: false } }
+            }
+        });
+
+        function copyAddress() {
+            const copyText = document.getElementById("donationAddress");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Adres gekopieerd: " + copyText.value);
         }
     </script>
 </body>
