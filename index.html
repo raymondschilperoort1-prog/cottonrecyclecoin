@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CottonRecycleCoin (CRC)</title>
-  <meta name="description" content="CottonRecycleCoin – the deflationary token powering verified mechanical cotton recycling." />
+  <meta id="meta-desc" name="description" content="CottonRecycleCoin – het deflationaire token voor blockchain‑gecertificeerde mechanische katoenrecycling." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,6 +14,8 @@
     html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
     .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); }
     .shadow-smooth { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .lang-hidden { display: none; }
+    .lang-btn.active { background: #111; color: #fff; }
   </style>
 </head>
 <body class="bg-neutral-50 text-neutral-900">
@@ -25,13 +27,19 @@
         <span class="font-semibold">CottonRecycleCoin</span>
       </div>
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#about" class="hover:text-black/80">About</a>
-        <a href="#tokenomics" class="hover:text-black/80">Tokenomics</a>
-        <a href="#burn" class="hover:text-black/80">Burn</a>
-        <a href="#roadmap" class="hover:text-black/80">Roadmap</a>
-        <a href="#resources" class="hover:text-black/80">Resources</a>
+        <a href="#about" class="hover:text-black/80" data-i18n="nav.about">Over</a>
+        <a href="#tokenomics" class="hover:text-black/80" data-i18n="nav.tokenomics">Tokenomics</a>
+        <a href="#burn" class="hover:text-black/80" data-i18n="nav.burn">Burn</a>
+        <a href="#roadmap" class="hover:text-black/80" data-i18n="nav.roadmap">Roadmap</a>
+        <a href="#resources" class="hover:text-black/80" data-i18n="nav.resources">Resources</a>
       </nav>
-      <a href="#buy" class="inline-flex items-center gap-2 rounded-xl bg-black text-white text-sm px-4 py-2 shadow-smooth">Buy CRC</a>
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1 text-xs">
+          <button id="btn-nl" class="lang-btn px-2 py-1 rounded border border-neutral-300">NL</button>
+          <button id="btn-en" class="lang-btn px-2 py-1 rounded border border-neutral-300">EN</button>
+        </div>
+        <a href="#buy" class="inline-flex items-center gap-2 rounded-xl bg-black text-white text-sm px-4 py-2 shadow-smooth" data-i18n="cta.buyTop">Koop CRC</a>
+      </div>
     </div>
   </header>
 
@@ -41,22 +49,27 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <h1 class="text-3xl md:text-5xl font-bold leading-tight">Blockchain‑verified cotton recycling.<br><span class="text-neutral-500">A deflationary token with real‑world utility.</span></h1>
-          <p class="mt-6 text-neutral-700 max-w-xl">CRC is the token that links every kilogram of recycled cotton to the blockchain. Hotels and laundries prove sustainability; holders benefit from transparent, deflationary tokenomics.</p>
+          <h1 class="text-3xl md:text-5xl font-bold leading-tight">
+            <span data-i18n="hero.h1.line1">Blockchain‑gecertificeerde katoenrecycling.</span><br>
+            <span class="text-neutral-500" data-i18n="hero.h1.line2">Een deflationair token met echte utility.</span>
+          </h1>
+          <p class="mt-6 text-neutral-700 max-w-xl" data-i18n="hero.p">
+            CRC koppelt elke kilogram gerecycled katoen aan de blockchain. Hotels en wasserijen bewijzen duurzaamheid; holders profiteren van transparante, deflationaire tokenomics.
+          </p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#whitepaper" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth">Whitepaper</a>
-            <a href="#buy" class="rounded-xl bg-black text-white px-4 py-2 shadow-smooth">Buy on DEX</a>
-            <a href="#price" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth">Live price</a>
+            <a href="#whitepaper" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth" data-i18n="cta.whitepaper">Whitepaper</a>
+            <a href="#buy" class="rounded-xl bg-black text-white px-4 py-2 shadow-smooth" data-i18n="cta.buyDex">Kopen op DEX</a>
+            <a href="#price" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth" data-i18n="cta.price">Live koers</a>
           </div>
           <dl class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
-            <div><dt class="text-neutral-500">Chain</dt><dd class="font-semibold">Polygon Mainnet</dd></div>
-            <div><dt class="text-neutral-500">Ticker</dt><dd class="font-semibold">CRC</dd></div>
-            <div><dt class="text-neutral-500">Supply</dt><dd class="font-semibold">15,000,000,000 (deflationary)</dd></div>
+            <div><dt class="text-neutral-500" data-i18n="hero.chain.label">Chain</dt><dd class="font-semibold" data-i18n="hero.chain.value">Polygon Mainnet</dd></div>
+            <div><dt class="text-neutral-500" data-i18n="hero.ticker.label">Ticker</dt><dd class="font-semibold">CRC</dd></div>
+            <div><dt class="text-neutral-500" data-i18n="hero.supply.label">Supply</dt><dd class="font-semibold" data-i18n="hero.supply.value">15.000.000.000 (deflationair)</dd></div>
           </dl>
         </div>
         <div class="glass rounded-3xl p-6 shadow-smooth">
           <div class="aspect-[16/10] rounded-2xl bg-white flex items-center justify-center">
-            <span class="text-neutral-400">Hero visual — add product shot / factory render here</span>
+            <span class="text-neutral-400" data-i18n="hero.placeholder">Hero‑visual — product/fabriek render</span>
           </div>
         </div>
       </div>
@@ -66,32 +79,32 @@
   <!-- Buy -->
   <section id="buy" class="py-16 bg-white border-t border-neutral-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl md:text-3xl font-semibold">Buy CRC</h2>
-      <p class="mt-3 text-neutral-700 text-sm">Swap on QuickSwap (Polygon). The button pre-fills CRC as the output token. Always verify the contract address before swapping.</p>
+      <h2 class="text-2xl md:text-3xl font-semibold" data-i18n="buy.title">Koop CRC</h2>
+      <p class="mt-3 text-neutral-700 text-sm" data-i18n="buy.desc">Swap op QuickSwap (Polygon). De knop vult CRC alvast in als output‑token. Controleer altijd het contractadres voordat je swapt.</p>
       <div class="mt-8 grid gap-4 md:grid-cols-2">
         <a id="buyLink" target="_blank" rel="noopener" class="rounded-2xl p-5 bg-black text-white shadow-smooth flex items-center justify-between">
           <div>
-            <div class="text-sm opacity-80">DEX</div>
-            <div class="text-lg font-semibold">Buy on QuickSwap</div>
-            <div class="text-xs opacity-80">CRC / MATIC (Polygon)</div>
+            <div class="text-sm opacity-80" data-i18n="buy.dex">DEX</div>
+            <div class="text-lg font-semibold" data-i18n="buy.btn">Koop op QuickSwap</div>
+            <div class="text-xs opacity-80" data-i18n="buy.pair">CRC / MATIC (Polygon)</div>
           </div>
           <span aria-hidden>↗</span>
         </a>
         <button id="addToMM" class="rounded-2xl p-5 bg-white border border-neutral-300 shadow-smooth text-left">
-          <div class="text-sm text-neutral-500">Wallet</div>
-          <div class="text-lg font-semibold">Add CRC to MetaMask</div>
-          <div class="text-xs text-neutral-500">Adds token with correct decimals & symbol</div>
+          <div class="text-sm text-neutral-500" data-i18n="buy.wallet">Wallet</div>
+          <div class="text-lg font-semibold" data-i18n="buy.addmm">Voeg CRC toe aan MetaMask</div>
+          <div class="text-xs text-neutral-500" data-i18n="buy.mmhelp">Voegt token toe met juiste decimals & symbool</div>
         </button>
       </div>
-      <p class="mt-4 text-xs text-neutral-500">Contract: <code id="caCopy" class="select-all"></code></p>
+      <p class="mt-4 text-xs text-neutral-500"><span data-i18n="buy.contract">Contract</span>: <code id="caCopy" class="select-all"></code></p>
     </div>
   </section>
 
   <!-- About -->
   <section id="about" class="py-16 border-t border-neutral-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl md:text-3xl font-semibold">Why CottonRecycleCoin?</h2>
-      <p class="mt-4 text-neutral-700">The textile industry generates massive waste and lacks transparent incentives for recycling. CRC tokenizes recycled cotton and rewards real‑world circularity using blockchain proofs integrated with a next‑gen mechanical recycling facility in the Netherlands.</p>
+      <h2 class="text-2xl md:text-3xl font-semibold" data-i18n="about.title">Waarom CottonRecycleCoin?</h2>
+      <p class="mt-4 text-neutral-700" data-i18n="about.body">De textielindustrie produceert enorme hoeveelheden afval en mist transparante prikkels om te recyclen. CRC tokeniseert gerecycled katoen en beloont échte circulariteit met blockchain‑bewijzen, geïntegreerd met een high‑tech mechanische recyclingfabriek in Nederland.</p>
     </div>
   </section>
 
@@ -100,18 +113,18 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <h3 class="text-xl md:text-2xl font-semibold">Tokenomics</h3>
+          <h3 class="text-xl md:text-2xl font-semibold" data-i18n="tokenomics.title">Tokenomics</h3>
           <ul class="mt-4 space-y-2 text-neutral-700 text-sm">
-            <li><strong>Total Supply:</strong> 15,000,000,000 CRC</li>
-            <li><strong>Start Price:</strong> €0.0001</li>
-            <li><strong>Distribution:</strong> 30% Rewards, 25% Investors, 20% Cotton Recycle B.V., 15% Liquidity, 10% Team</li>
-            <li><strong>Vesting:</strong> Team & Advisors 36 months</li>
-            <li><strong>Design:</strong> Deflationary via on‑chain burns</li>
+            <li><strong data-i18n="tokenomics.total">Totale supply</strong>: <span data-i18n="tokenomics.totalv">15.000.000.000 CRC</span></li>
+            <li><strong data-i18n="tokenomics.price">Startprijs</strong>: <span data-i18n="tokenomics.pricev">€0,0001</span></li>
+            <li><strong data-i18n="tokenomics.dist">Verdeling</strong>: <span data-i18n="tokenomics.distv">30% Rewards, 25% Investeerders, 20% Cotton Recycle B.V., 15% Liquiditeit, 10% Team</span></li>
+            <li><strong data-i18n="tokenomics.vesting">Vesting</strong>: <span data-i18n="tokenomics.vestingv">Team & Adviseurs 36 maanden</span></li>
+            <li><strong data-i18n="tokenomics.design">Ontwerp</strong>: <span data-i18n="tokenomics.designv">Deflationair via on‑chain burns</span></li>
           </ul>
         </div>
         <div class="bg-white rounded-3xl p-6 shadow-smooth">
           <canvas id="tokenomicsChart" class="!max-h-[360px]"></canvas>
-          <p class="mt-3 text-center text-xs text-neutral-500">Figure 1: CRC Tokenomics Distribution</p>
+          <p class="mt-3 text-center text-xs text-neutral-500" data-i18n="tokenomics.caption">Figuur 1: CRC Tokenomics verdeling</p>
         </div>
       </div>
     </div>
@@ -123,18 +136,18 @@
       <div class="grid lg:grid-cols-2 gap-10 items-center">
         <div class="bg-white rounded-3xl p-6 shadow-smooth">
           <div class="space-y-4 text-sm text-neutral-800">
-            <h3 class="text-xl md:text-2xl font-semibold">Burn Mechanism & Value Growth</h3>
+            <h3 class="text-xl md:text-2xl font-semibold" data-i18n="burn.title">Burn‑mechanisme & waardegroei</h3>
             <ul class="list-disc pl-5 space-y-2">
-              <li><strong>Transactional burn:</strong> 0.5% of every CRC transaction is sent to <code>0x000...dead</code>.</li>
-              <li><strong>Factory‑linked burn:</strong> per 1,000 kg recycled cotton, 1% of the CRC used is burned.</li>
-              <li><strong>Impact:</strong> decreasing supply + growing demand creates structural scarcity.</li>
+              <li data-i18n="burn.tx">Transactie‑burn: 0,5% van elke CRC‑transactie gaat naar <code>0x000...dead</code>.</li>
+              <li data-i18n="burn.factory">Fabriek‑gekoppelde burn: per 1.000 kg gerecycled katoen wordt 1% van de gebruikte CRC geburned.</li>
+              <li data-i18n="burn.impact">Effect: dalende supply + groeiende vraag creëert structurele schaarste.</li>
             </ul>
-            <p>Result: a self‑reinforcing, deflationary economy that protects long‑term holder value while tying token scarcity to real‑world recycling throughput.</p>
+            <p data-i18n="burn.result">Resultaat: een zelfversterkende, deflationaire economie die langetermijnwaarde beschermt en schaarste koppelt aan echte recyclingoutput.</p>
           </div>
         </div>
         <div class="bg-white rounded-3xl p-6 shadow-smooth">
           <canvas id="supplyChart" class="!max-h-[320px]"></canvas>
-          <p class="mt-3 text-center text-xs text-neutral-500">Figure 2: Supply projection range with burn</p>
+          <p class="mt-3 text-center text-xs text-neutral-500" data-i18n="burn.caption">Figuur 2: Supply‑projectie met burn</p>
         </div>
       </div>
     </div>
@@ -143,22 +156,22 @@
   <!-- Roadmap -->
   <section id="roadmap" class="py-16 border-t border-neutral-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h3 class="text-xl md:text-2xl font-semibold">Roadmap</h3>
+      <h3 class="text-xl md:text-2xl font-semibold" data-i18n="roadmap.title">Roadmap</h3>
       <div class="mt-8 grid gap-4 md:grid-cols-3">
         <div class="rounded-2xl p-5 bg-white shadow-smooth">
           <div class="text-xs text-neutral-500">2025 · Q3</div>
-          <div class="font-semibold mt-1">Whitepaper + DEX Listing</div>
-          <p class="text-sm mt-2 text-neutral-700">Publish whitepaper, tokenlist, wallet assets (TrustWallet/Rabby).</p>
+          <div class="font-semibold mt-1" data-i18n="roadmap.r1">Whitepaper + DEX‑listing</div>
+          <p class="text-sm mt-2 text-neutral-700" data-i18n="roadmap.r1d">Publiceer whitepaper, tokenlist, wallet‑assets (TrustWallet/Rabby).</p>
         </div>
         <div class="rounded-2xl p-5 bg-white shadow-smooth">
           <div class="text-xs text-neutral-500">2026 · Q2</div>
-          <div class="font-semibold mt-1">API: Proof of Recycling</div>
-          <p class="text-sm mt-2 text-neutral-700">Connect factory data to blockchain for on‑chain proofs.</p>
+          <div class="font-semibold mt-1" data-i18n="roadmap.r2">API: Proof of Recycling</div>
+          <p class="text-sm mt-2 text-neutral-700" data-i18n="roadmap.r2d">Koppel fabrieksdata aan de blockchain voor on‑chain bewijzen.</p>
         </div>
         <div class="rounded-2xl p-5 bg-white shadow-smooth">
           <div class="text-xs text-neutral-500">2027 · Q2</div>
-          <div class="font-semibold mt-1">NL Recycling Factory</div>
-          <p class="text-sm mt-2 text-neutral-700">Go‑live: large‑scale mechanical cotton recycling.</p>
+          <div class="font-semibold mt-1" data-i18n="roadmap.r3">NL‑recyclingfabriek live</div>
+          <p class="text-sm mt-2 text-neutral-700" data-i18n="roadmap.r3d">Grootschalige mechanische katoenrecycling.</p>
         </div>
       </div>
     </div>
@@ -167,8 +180,8 @@
   <!-- Price (widget-ready) -->
   <section id="price" class="py-16 bg-neutral-50 border-t border-neutral-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h3 class="text-xl md:text-2xl font-semibold">Live Price</h3>
-      <p class="mt-2 text-neutral-700 text-sm">This block can fetch from Dexscreener / CoinGecko once CRC is listed. Configure the addresses below.</p>
+      <h3 class="text-xl md:text-2xl font-semibold" data-i18n="price.title">Live koers</h3>
+      <p class="mt-2 text-neutral-700 text-sm" data-i18n="price.desc">Dit blok kan Dexscreener / CoinGecko data tonen zodra CRC is gelist. Vul hieronder de adressen in.</p>
       <div id="priceBox" class="mt-6 rounded-2xl bg-white p-6 shadow-smooth text-sm">
         <div class="flex flex-wrap items-center gap-4">
           <div>CRC / MATIC</div>
@@ -185,7 +198,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h3 class="text-xl md:text-2xl font-semibold">Resources</h3>
       <ul class="mt-4 grid md:grid-cols-2 gap-4 text-sm">
-        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="#whitepaper">Whitepaper (EN/NL)</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="#whitepaper" data-i18n="res.whitepaper">Whitepaper (NL/EN)</a></li>
         <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://polygonscan.com/token/0x0E8e8387DAfB94DbcdCA41352c578631A3448B12" target="_blank" rel="noopener">Polygonscan (CRC)</a></li>
         <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://t.me/+QV2NVTKtVAM1Nzhk" target="_blank" rel="noopener">Telegram</a></li>
         <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://discord.gg/cA7dxPCq" target="_blank" rel="noopener">Discord</a></li>
@@ -196,55 +209,185 @@
   <footer class="py-10 border-t border-neutral-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-neutral-500 flex flex-wrap items-center justify-between gap-3">
       <div>© <span id="year"></span> CottonRecycleCoin</div>
-      <div>Built for transparency • Polygon Mainnet</div>
+      <div data-i18n="footer.tag">Gebouwd voor transparantie • Polygon Mainnet</div>
     </div>
   </footer>
 
   <script>
     // ---- Config ----
-    const TOKEN_ADDRESS = "0x0E8e8387DAfB94DbcdCA41352c578631A3448B12"; // update if needed
-    const DEXSCREENER_PAIR = "https://polygonscan.com/address/0x0E8e8387DAfB94DbcdCA41352c578631A3448B12"; // e.g., "polygon/0xPAIRADDRESS" once live
+    const TOKEN_ADDRESS = "0x0E8e8387DAfB94DbcdCA41352c578631A3448B12";
+    const DEXSCREENER_PAIR = ""; // e.g., "polygon/0xPAIRADDRESS" once live
 
-    // ---- Tokenomics chart ----
-    const tokenomicsCtx = document.getElementById('tokenomicsChart').getContext('2d');
-    const tokenomicsChart = new Chart(tokenomicsCtx, {
-      type: 'doughnut',
-      data: {
-        labels: [
-          'Recycling Rewards (30%)',
-          'Investors & Fund (25%)',
-          'Cotton Recycle B.V. (20%)',
-          'Liquidity & Exchanges (15%)',
-          'Team & Advisors (10%)'
-        ],
-        datasets: [{ data: [30, 25, 20, 15, 10] }]
+    // ---- i18n strings ----
+    const I18N = {
+      nl: {
+        metaTitle: 'CottonRecycleCoin (CRC)',
+        metaDesc: 'CottonRecycleCoin – het deflationaire token voor blockchain‑gecertificeerde mechanische katoenrecycling.',
+        nav: { about: 'Over', tokenomics: 'Tokenomics', burn: 'Burn', roadmap: 'Roadmap', resources: 'Resources' },
+        cta: { buyTop: 'Koop CRC', whitepaper: 'Whitepaper', buyDex: 'Kopen op DEX', price: 'Live koers' },
+        hero: {
+          h1: { line1: 'Blockchain‑gecertificeerde katoenrecycling.', line2: 'Een deflationair token met echte utility.' },
+          p: 'CRC koppelt elke kilogram gerecycled katoen aan de blockchain. Hotels en wasserijen bewijzen duurzaamheid; holders profiteren van transparante, deflationaire tokenomics.',
+          chain: { label: 'Chain', value: 'Polygon Mainnet' },
+          ticker: { label: 'Ticker' },
+          supply: { label: 'Supply', value: '15.000.000.000 (deflationair)' },
+          placeholder: 'Hero‑visual — product/fabriek render'
+        },
+        buy: {
+          title: 'Koop CRC', desc: 'Swap op QuickSwap (Polygon). De knop vult CRC alvast in als output‑token. Controleer altijd het contractadres voordat je swapt.',
+          dex: 'DEX', btn: 'Koop op QuickSwap', pair: 'CRC / MATIC (Polygon)', wallet: 'Wallet', addmm: 'Voeg CRC toe aan MetaMask', mmhelp: 'Voegt token toe met juiste decimals & symbool', contract: 'Contract'
+        },
+        about: { title: 'Waarom CottonRecycleCoin?', body: 'De textielindustrie produceert enorme hoeveelheden afval en mist transparante prikkels om te recyclen. CRC tokeniseert gerecycled katoen en beloont échte circulariteit met blockchain‑bewijzen, geïntegreerd met een high‑tech mechanische recyclingfabriek in Nederland.' },
+        tokenomics: {
+          title: 'Tokenomics', total: 'Totale supply', totalv: '15.000.000.000 CRC', price: 'Startprijs', pricev: '€0,0001', dist: 'Verdeling', distv: '30% Rewards, 25% Investeerders, 20% Cotton Recycle B.V., 15% Liquiditeit, 10% Team', vesting: 'Vesting', vestingv: 'Team & Adviseurs 36 maanden', design: 'Ontwerp', designv: 'Deflationair via on‑chain burns', caption: 'Figuur 1: CRC Tokenomics verdeling', chartLabels: ['Recycling Rewards (30%)','Investeerders & Fonds (25%)','Cotton Recycle B.V. (20%)','Liquiditeit & Exchanges (15%)','Team & Adviseurs (10%)']
+        },
+        burn: { title: 'Burn‑mechanisme & waardegroei', tx: 'Transactie‑burn: 0,5% van elke CRC‑transactie gaat naar 0x000...dead.', factory: 'Fabriek‑gekoppelde burn: per 1.000 kg gerecycled katoen wordt 1% van de gebruikte CRC geburned.', impact: 'Effect: dalende supply + groeiende vraag creëert structurele schaarste.', result: 'Resultaat: een zelfversterkende, deflationaire economie die langetermijnwaarde beschermt en schaarste koppelt aan echte recyclingoutput.', caption: 'Figuur 2: Supply‑projectie met burn' },
+        roadmap: { title: 'Roadmap', r1: 'Whitepaper + DEX‑listing', r1d: 'Publiceer whitepaper, tokenlist, wallet‑assets (TrustWallet/Rabby).', r2: 'API: Proof of Recycling', r2d: 'Koppel fabrieksdata aan de blockchain voor on‑chain bewijzen.', r3: 'NL‑recyclingfabriek live', r3d: 'Grootschalige mechanische katoenrecycling.' },
+        price: { title: 'Live koers', desc: 'Dit blok kan Dexscreener / CoinGecko data tonen zodra CRC is gelist. Vul hieronder de adressen in.' },
+        res: { whitepaper: 'Whitepaper (NL/EN)' },
+        footer: { tag: 'Gebouwd voor transparantie • Polygon Mainnet' }
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'right' } },
-        cutout: '55%'
+      en: {
+        metaTitle: 'CottonRecycleCoin (CRC)',
+        metaDesc: 'CottonRecycleCoin – the deflationary token powering verified mechanical cotton recycling.',
+        nav: { about: 'About', tokenomics: 'Tokenomics', burn: 'Burn', roadmap: 'Roadmap', resources: 'Resources' },
+        cta: { buyTop: 'Buy CRC', whitepaper: 'Whitepaper', buyDex: 'Buy on DEX', price: 'Live price' },
+        hero: {
+          h1: { line1: 'Blockchain‑verified cotton recycling.', line2: 'A deflationary token with real‑world utility.' },
+          p: 'CRC links every kilogram of recycled cotton to the blockchain. Hotels and laundries prove sustainability; holders benefit from transparent, deflationary tokenomics.',
+          chain: { label: 'Chain', value: 'Polygon Mainnet' },
+          ticker: { label: 'Ticker' },
+          supply: { label: 'Supply', value: '15,000,000,000 (deflationary)' },
+          placeholder: 'Hero visual — product/factory render'
+        },
+        buy: { title: 'Buy CRC', desc: 'Swap on QuickSwap (Polygon). The button pre‑fills CRC as the output token. Always verify the contract address before swapping.', dex: 'DEX', btn: 'Buy on QuickSwap', pair: 'CRC / MATIC (Polygon)', wallet: 'Wallet', addmm: 'Add CRC to MetaMask', mmhelp: 'Adds token with correct decimals & symbol', contract: 'Contract' },
+        about: { title: 'Why CottonRecycleCoin?', body: 'The textile industry generates massive waste and lacks transparent incentives for recycling. CRC tokenizes recycled cotton and rewards real‑world circularity using blockchain proofs integrated with a next‑gen mechanical recycling facility in the Netherlands.' },
+        tokenomics: { title: 'Tokenomics', total: 'Total supply', totalv: '15,000,000,000 CRC', price: 'Start price', pricev: '€0.0001', dist: 'Distribution', distv: '30% Rewards, 25% Investors, 20% Cotton Recycle B.V., 15% Liquidity, 10% Team', vesting: 'Vesting', vestingv: 'Team & Advisors 36 months', design: 'Design', designv: 'Deflationary via on‑chain burns', caption: 'Figure 1: CRC Tokenomics Distribution', chartLabels: ['Recycling Rewards (30%)','Investors & Fund (25%)','Cotton Recycle B.V. (20%)','Liquidity & Exchanges (15%)','Team & Advisors (10%)'] },
+        burn: { title: 'Burn Mechanism & Value Growth', tx: 'Transactional burn: 0.5% of every CRC transaction is sent to 0x000...dead.', factory: 'Factory‑linked burn: per 1,000 kg recycled cotton, 1% of the CRC used is burned.', impact: 'Impact: decreasing supply + growing demand creates structural scarcity.', result: 'Result: a self‑reinforcing, deflationary economy that protects long‑term holder value while tying token scarcity to real‑world recycling throughput.', caption: 'Figure 2: Supply projection range with burn' },
+        roadmap: { title: 'Roadmap', r1: 'Whitepaper + DEX Listing', r1d: 'Publish whitepaper, tokenlist, wallet assets (TrustWallet/Rabby).', r2: 'API: Proof of Recycling', r2d: 'Connect factory data to blockchain for on‑chain proofs.', r3: 'NL Recycling Factory', r3d: 'Large‑scale mechanical cotton recycling.' },
+        price: { title: 'Live price', desc: 'This block can fetch from Dexscreener / CoinGecko once CRC is listed. Configure the addresses below.' },
+        res: { whitepaper: 'Whitepaper (EN/NL)' },
+        footer: { tag: 'Built for transparency • Polygon Mainnet' }
       }
-    });
+    };
 
-    // ---- Supply projection chart ----
-    const supplyCtx = document.getElementById('supplyChart').getContext('2d');
-    const supplyChart = new Chart(supplyCtx, {
-      type: 'line',
-      data: {
-        labels: ['Year 0', '1', '2', '3', '4', '5'],
-        datasets: [
-          { label: 'Conservative', data: [15, 14, 13.5, 13, 12.5, 12], tension: 0.35 },
-          { label: 'Optimistic', data: [15, 14, 13, 12, 11, 10], tension: 0.35 }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom' } },
-        scales: { y: { title: { display: true, text: 'Supply (Billions CRC)' } } }
-      }
-    });
+    function setText(el, text){ if(el) el.innerHTML = text; }
+
+    function applyLang(lang){
+      const dict = I18N[lang] || I18N.nl;
+      document.documentElement.lang = lang;
+      document.title = dict.metaTitle;
+      const md = document.getElementById('meta-desc'); if (md) md.setAttribute('content', dict.metaDesc);
+
+      // toggle buttons
+      document.getElementById('btn-nl')?.classList.toggle('active', lang==='nl');
+      document.getElementById('btn-en')?.classList.toggle('active', lang==='en');
+
+      // nav & ctas
+      document.querySelectorAll('[data-i18n="nav.about"]').forEach(e=>setText(e, dict.nav.about));
+      document.querySelectorAll('[data-i18n="nav.tokenomics"]').forEach(e=>setText(e, dict.nav.tokenomics));
+      document.querySelectorAll('[data-i18n="nav.burn"]').forEach(e=>setText(e, dict.nav.burn));
+      document.querySelectorAll('[data-i18n="nav.roadmap"]').forEach(e=>setText(e, dict.nav.roadmap));
+      document.querySelectorAll('[data-i18n="nav.resources"]').forEach(e=>setText(e, dict.nav.resources));
+      document.querySelectorAll('[data-i18n="cta.buyTop"]').forEach(e=>setText(e, dict.cta.buyTop));
+      document.querySelectorAll('[data-i18n="cta.whitepaper"]').forEach(e=>setText(e, dict.cta.whitepaper));
+      document.querySelectorAll('[data-i18n="cta.buyDex"]').forEach(e=>setText(e, dict.cta.buyDex));
+      document.querySelectorAll('[data-i18n="cta.price"]').forEach(e=>setText(e, dict.cta.price));
+
+      // hero
+      setText(document.querySelector('[data-i18n="hero.h1.line1"]'), dict.hero.h1.line1);
+      setText(document.querySelector('[data-i18n="hero.h1.line2"]'), dict.hero.h1.line2);
+      setText(document.querySelector('[data-i18n="hero.p"]'), dict.hero.p);
+      setText(document.querySelector('[data-i18n="hero.chain.label"]'), dict.hero.chain.label);
+      setText(document.querySelector('[data-i18n="hero.chain.value"]'), dict.hero.chain.value);
+      setText(document.querySelector('[data-i18n="hero.ticker.label"]'), dict.hero.ticker.label||'Ticker');
+      setText(document.querySelector('[data-i18n="hero.supply.label"]'), dict.hero.supply.label);
+      setText(document.querySelector('[data-i18n="hero.supply.value"]'), dict.hero.supply.value);
+      setText(document.querySelector('[data-i18n="hero.placeholder"]'), dict.hero.placeholder);
+
+      // buy
+      setText(document.querySelector('[data-i18n="buy.title"]'), dict.buy.title);
+      setText(document.querySelector('[data-i18n="buy.desc"]'), dict.buy.desc);
+      setText(document.querySelector('[data-i18n="buy.dex"]'), dict.buy.dex);
+      setText(document.querySelector('[data-i18n="buy.btn"]'), dict.buy.btn);
+      setText(document.querySelector('[data-i18n="buy.pair"]'), dict.buy.pair);
+      setText(document.querySelector('[data-i18n="buy.wallet"]'), dict.buy.wallet);
+      setText(document.querySelector('[data-i18n="buy.addmm"]'), dict.buy.addmm);
+      setText(document.querySelector('[data-i18n="buy.mmhelp"]'), dict.buy.mmhelp);
+      setText(document.querySelector('[data-i18n="buy.contract"]'), dict.buy.contract);
+
+      // about
+      setText(document.querySelector('[data-i18n="about.title"]'), dict.about.title);
+      setText(document.querySelector('[data-i18n="about.body"]'), dict.about.body);
+
+      // tokenomics texts
+      setText(document.querySelector('[data-i18n="tokenomics.title"]'), dict.tokenomics.title);
+      setText(document.querySelector('[data-i18n="tokenomics.total"]'), dict.tokenomics.total);
+      setText(document.querySelector('[data-i18n="tokenomics.totalv"]'), dict.tokenomics.totalv);
+      setText(document.querySelector('[data-i18n="tokenomics.price"]'), dict.tokenomics.price);
+      setText(document.querySelector('[data-i18n="tokenomics.pricev"]'), dict.tokenomics.pricev);
+      setText(document.querySelector('[data-i18n="tokenomics.dist"]'), dict.tokenomics.dist);
+      setText(document.querySelector('[data-i18n="tokenomics.distv"]'), dict.tokenomics.distv);
+      setText(document.querySelector('[data-i18n="tokenomics.vesting"]'), dict.tokenomics.vesting);
+      setText(document.querySelector('[data-i18n="tokenomics.vestingv"]'), dict.tokenomics.vestingv);
+      setText(document.querySelector('[data-i18n="tokenomics.design"]'), dict.tokenomics.design);
+      setText(document.querySelector('[data-i18n="tokenomics.designv"]'), dict.tokenomics.designv);
+      setText(document.querySelector('[data-i18n="tokenomics.caption"]'), dict.tokenomics.caption);
+
+      // burn
+      setText(document.querySelector('[data-i18n="burn.title"]'), dict.burn.title);
+      setText(document.querySelector('[data-i18n="burn.tx"]'), dict.burn.tx);
+      setText(document.querySelector('[data-i18n="burn.factory"]'), dict.burn.factory);
+      setText(document.querySelector('[data-i18n="burn.impact"]'), dict.burn.impact);
+      setText(document.querySelector('[data-i18n="burn.result"]'), dict.burn.result);
+      setText(document.querySelector('[data-i18n="burn.caption"]'), dict.burn.caption);
+
+      // roadmap
+      setText(document.querySelector('[data-i18n="roadmap.title"]'), dict.roadmap.title);
+      setText(document.querySelector('[data-i18n="roadmap.r1"]'), dict.roadmap.r1);
+      setText(document.querySelector('[data-i18n="roadmap.r1d"]'), dict.roadmap.r1d);
+      setText(document.querySelector('[data-i18n="roadmap.r2"]'), dict.roadmap.r2);
+      setText(document.querySelector('[data-i18n="roadmap.r2d"]'), dict.roadmap.r2d);
+      setText(document.querySelector('[data-i18n="roadmap.r3"]'), dict.roadmap.r3);
+      setText(document.querySelector('[data-i18n="roadmap.r3d"]'), dict.roadmap.r3d);
+
+      // price
+      setText(document.querySelector('[data-i18n="price.title"]'), dict.price.title);
+      setText(document.querySelector('[data-i18n="price.desc"]'), dict.price.desc);
+
+      // resources & footer
+      setText(document.querySelector('[data-i18n="res.whitepaper"]'), dict.res.whitepaper);
+      setText(document.querySelector('[data-i18n="footer.tag"]'), dict.footer.tag);
+
+      // charts relabel
+      updateCharts(dict.tokenomics.chartLabels, lang);
+
+      localStorage.setItem('crc_lang', lang);
+    }
+
+    // ---- Charts ----
+    let tokenomicsChart, supplyChart;
+    function makeCharts(labels){
+      const tokenomicsCtx = document.getElementById('tokenomicsChart').getContext('2d');
+      if (tokenomicsChart) tokenomicsChart.destroy();
+      tokenomicsChart = new Chart(tokenomicsCtx, {
+        type: 'doughnut',
+        data: { labels, datasets: [{ data: [30,25,20,15,10] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } }, cutout: '55%' }
+      });
+
+      const supplyCtx = document.getElementById('supplyChart').getContext('2d');
+      if (supplyChart) supplyChart.destroy();
+      supplyChart = new Chart(supplyCtx, {
+        type: 'line',
+        data: { labels: ['Year 0','1','2','3','4','5'], datasets: [
+          { label: 'Conservative', data: [15,14,13.5,13,12.5,12], tension: .35 },
+          { label: 'Optimistic', data: [15,14,13,12,11,10], tension: .35 }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { title: { display: true, text: 'Supply (Billions CRC)' } } } }
+      });
+    }
+    function updateCharts(labels, lang){ makeCharts(labels); }
 
     // ---- Live price (Dexscreener) ----
     async function fetchPrice() {
@@ -260,19 +403,13 @@
         const ch = Number(pair.priceChange?.h24 || 0);
         changeEl.textContent = `24h: ${ch > 0 ? '+' : ''}${ch.toFixed(2)}%`;
         changeEl.className = `text-xs ${ch>=0 ? 'text-green-600' : 'text-red-600'}`;
-      } catch (e) {
-        priceEl.textContent = 'Unavailable';
-        changeEl.textContent = '';
-      }
+      } catch (e) { priceEl.textContent = 'Unavailable'; changeEl.textContent = ''; }
     }
-    fetchPrice();
-    setInterval(fetchPrice, 30000);
 
     // ---- Buy: prefill QuickSwap link + show contract ----
     const buyLink = document.getElementById('buyLink');
     if (buyLink) { buyLink.href = `https://quickswap.exchange/#/swap?outputCurrency=${TOKEN_ADDRESS}&chain=polygon`; }
-    const caEl = document.getElementById('caCopy');
-    if (caEl) { caEl.textContent = TOKEN_ADDRESS; }
+    const caEl = document.getElementById('caCopy'); if (caEl) { caEl.textContent = TOKEN_ADDRESS; }
 
     // ---- Add to MetaMask ----
     const addBtn = document.getElementById('addToMM');
@@ -287,8 +424,482 @@
       });
     }
 
-    // Year in footer
+    // Init
     document.getElementById('year').textContent = new Date().getFullYear();
+    fetchPrice(); setInterval(fetchPrice, 30000);
+
+    // Language default with hash support: #nl or #en
+    function getHashLang(){
+      const h = (location.hash||'').toLowerCase();
+      if (h === '#en') return 'en';
+      if (h === '#nl') return 'nl';
+      return null;
+    }
+    const stored = localStorage.getItem('crc_lang');
+    const hashLang = getHashLang();
+    const initialLang = hashLang || (stored === 'en' ? 'en' : 'nl');
+    applyLang(initialLang);
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', () => {
+      const hl = getHashLang();
+      if (hl) applyLang(hl);
+    });
+
+    // Language switch buttons update hash for deep links
+    document.getElementById('btn-nl').addEventListener('click', ()=>{ location.hash = '#nl'; applyLang('nl'); });
+    document.getElementById('btn-en').addEventListener('click', ()=>{ location.hash = '#en'; applyLang('en'); });
+
+    // Language default: NL first unless user picked EN earlier
+    const stored = localStorage.getItem('crc_lang');
+    const initialLang = stored === 'en' ? 'en' : 'nl';
+    applyLang(initialLang);
+
+    // Language switcher events
+    document.getElementById('btn-nl').addEventListener('click', ()=>applyLang('nl'));
+    document.getElementById('btn-en').addEventListener('click', ()=>applyLang('en'));
   </script>
 </body>
 </html>
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CottonRecycleCoin (CRC)</title>
+  <meta id="meta-desc" name="description" content="CottonRecycleCoin – het deflationaire token voor blockchain‑gecertificeerde mechanische katoenrecycling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); }
+    .shadow-smooth { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .lang-hidden { display: none; }
+    .lang-btn.active { background: #111; color: #fff; }
+  </style>
+</head>
+<body class="bg-neutral-50 text-neutral-900">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="CRC logo" class="h-9 w-9 rounded" onerror="this.src='https://raw.githubusercontent.com/raymondschilperoort1-prog/cottonrecyclecoin/540d1a515b4bb808259749664a862a33717b2520/logo.png'" />
+        <span class="font-semibold">CottonRecycleCoin</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" class="hover:text-black/80" data-i18n="nav.about">Over</a>
+        <a href="#tokenomics" class="hover:text-black/80" data-i18n="nav.tokenomics">Tokenomics</a>
+        <a href="#burn" class="hover:text-black/80" data-i18n="nav.burn">Burn</a>
+        <a href="#roadmap" class="hover:text-black/80" data-i18n="nav.roadmap">Roadmap</a>
+        <a href="#resources" class="hover:text-black/80" data-i18n="nav.resources">Resources</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-1 text-xs">
+          <button id="btn-nl" class="lang-btn px-2 py-1 rounded border border-neutral-300">NL</button>
+          <button id="btn-en" class="lang-btn px-2 py-1 rounded border border-neutral-300">EN</button>
+        </div>
+        <a href="#buy" class="inline-flex items-center gap-2 rounded-xl bg-black text-white text-sm px-4 py-2 shadow-smooth" data-i18n="cta.buyTop">Koop CRC</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.04),transparent_60%)]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-bold leading-tight">
+            <span data-i18n="hero.h1.line1">Blockchain‑gecertificeerde katoenrecycling.</span><br>
+            <span class="text-neutral-500" data-i18n="hero.h1.line2">Een deflationair token met echte utility.</span>
+          </h1>
+          <p class="mt-6 text-neutral-700 max-w-xl" data-i18n="hero.p">
+            CRC koppelt elke kilogram gerecycled katoen aan de blockchain. Hotels en wasserijen bewijzen duurzaamheid; holders profiteren van transparante, deflationaire tokenomics.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#whitepaper" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth" data-i18n="cta.whitepaper">Whitepaper</a>
+            <a href="#buy" class="rounded-xl bg-black text-white px-4 py-2 shadow-smooth" data-i18n="cta.buyDex">Kopen op DEX</a>
+            <a href="#price" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth" data-i18n="cta.price">Live koers</a>
+          </div>
+          <dl class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+            <div><dt class="text-neutral-500" data-i18n="hero.chain.label">Chain</dt><dd class="font-semibold" data-i18n="hero.chain.value">Polygon Mainnet</dd></div>
+            <div><dt class="text-neutral-500" data-i18n="hero.ticker.label">Ticker</dt><dd class="font-semibold">CRC</dd></div>
+            <div><dt class="text-neutral-500" data-i18n="hero.supply.label">Supply</dt><dd class="font-semibold" data-i18n="hero.supply.value">15.000.000.000 (deflationair)</dd></div>
+          </dl>
+        </div>
+        <div class="glass rounded-3xl p-6 shadow-smooth">
+          <div class="aspect-[16/10] rounded-2xl bg-white flex items-center justify-center">
+            <span class="text-neutral-400" data-i18n="hero.placeholder">Hero‑visual — product/fabriek render</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buy -->
+  <section id="buy" class="py-16 bg-white border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-semibold" data-i18n="buy.title">Koop CRC</h2>
+      <p class="mt-3 text-neutral-700 text-sm" data-i18n="buy.desc">Swap op QuickSwap (Polygon). De knop vult CRC alvast in als output‑token. Controleer altijd het contractadres voordat je swapt.</p>
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        <a id="buyLink" target="_blank" rel="noopener" class="rounded-2xl p-5 bg-black text-white shadow-smooth flex items-center justify-between">
+          <div>
+            <div class="text-sm opacity-80" data-i18n="buy.dex">DEX</div>
+            <div class="text-lg font-semibold" data-i18n="buy.btn">Koop op QuickSwap</div>
+            <div class="text-xs opacity-80" data-i18n="buy.pair">CRC / MATIC (Polygon)</div>
+          </div>
+          <span aria-hidden>↗</span>
+        </a>
+        <button id="addToMM" class="rounded-2xl p-5 bg-white border border-neutral-300 shadow-smooth text-left">
+          <div class="text-sm text-neutral-500" data-i18n="buy.wallet">Wallet</div>
+          <div class="text-lg font-semibold" data-i18n="buy.addmm">Voeg CRC toe aan MetaMask</div>
+          <div class="text-xs text-neutral-500" data-i18n="buy.mmhelp">Voegt token toe met juiste decimals & symbool</div>
+        </button>
+      </div>
+      <p class="mt-4 text-xs text-neutral-500"><span data-i18n="buy.contract">Contract</span>: <code id="caCopy" class="select-all"></code></p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-semibold" data-i18n="about.title">Waarom CottonRecycleCoin?</h2>
+      <p class="mt-4 text-neutral-700" data-i18n="about.body">De textielindustrie produceert enorme hoeveelheden afval en mist transparante prikkels om te recyclen. CRC tokeniseert gerecycled katoen en beloont échte circulariteit met blockchain‑bewijzen, geïntegreerd met een high‑tech mechanische recyclingfabriek in Nederland.</p>
+    </div>
+  </section>
+
+  <!-- Tokenomics with chart -->
+  <section id="tokenomics" class="py-16 bg-white border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="text-xl md:text-2xl font-semibold" data-i18n="tokenomics.title">Tokenomics</h3>
+          <ul class="mt-4 space-y-2 text-neutral-700 text-sm">
+            <li><strong data-i18n="tokenomics.total">Totale supply</strong>: <span data-i18n="tokenomics.totalv">15.000.000.000 CRC</span></li>
+            <li><strong data-i18n="tokenomics.price">Startprijs</strong>: <span data-i18n="tokenomics.pricev">€0,0001</span></li>
+            <li><strong data-i18n="tokenomics.dist">Verdeling</strong>: <span data-i18n="tokenomics.distv">30% Rewards, 25% Investeerders, 20% Cotton Recycle B.V., 15% Liquiditeit, 10% Team</span></li>
+            <li><strong data-i18n="tokenomics.vesting">Vesting</strong>: <span data-i18n="tokenomics.vestingv">Team & Adviseurs 36 maanden</span></li>
+            <li><strong data-i18n="tokenomics.design">Ontwerp</strong>: <span data-i18n="tokenomics.designv">Deflationair via on‑chain burns</span></li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-3xl p-6 shadow-smooth">
+          <canvas id="tokenomicsChart" class="!max-h-[360px]"></canvas>
+          <p class="mt-3 text-center text-xs text-neutral-500" data-i18n="tokenomics.caption">Figuur 1: CRC Tokenomics verdeling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Burn mechanism -->
+  <section id="burn" class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="bg-white rounded-3xl p-6 shadow-smooth">
+          <div class="space-y-4 text-sm text-neutral-800">
+            <h3 class="text-xl md:text-2xl font-semibold" data-i18n="burn.title">Burn‑mechanisme & waardegroei</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li data-i18n="burn.tx">Transactie‑burn: 0,5% van elke CRC‑transactie gaat naar <code>0x000...dead</code>.</li>
+              <li data-i18n="burn.factory">Fabriek‑gekoppelde burn: per 1.000 kg gerecycled katoen wordt 1% van de gebruikte CRC geburned.</li>
+              <li data-i18n="burn.impact">Effect: dalende supply + groeiende vraag creëert structurele schaarste.</li>
+            </ul>
+            <p data-i18n="burn.result">Resultaat: een zelfversterkende, deflationaire economie die langetermijnwaarde beschermt en schaarste koppelt aan echte recyclingoutput.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl p-6 shadow-smooth">
+          <canvas id="supplyChart" class="!max-h-[320px]"></canvas>
+          <p class="mt-3 text-center text-xs text-neutral-500" data-i18n="burn.caption">Figuur 2: Supply‑projectie met burn</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section id="roadmap" class="py-16 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl md:text-2xl font-semibold" data-i18n="roadmap.title">Roadmap</h3>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl p-5 bg-white shadow-smooth">
+          <div class="text-xs text-neutral-500">2025 · Q3</div>
+          <div class="font-semibold mt-1" data-i18n="roadmap.r1">Whitepaper + DEX‑listing</div>
+          <p class="text-sm mt-2 text-neutral-700" data-i18n="roadmap.r1d">Publiceer whitepaper, tokenlist, wallet‑assets (TrustWallet/Rabby).</p>
+        </div>
+        <div class="rounded-2xl p-5 bg-white shadow-smooth">
+          <div class="text-xs text-neutral-500">2026 · Q2</div>
+          <div class="font-semibold mt-1" data-i18n="roadmap.r2">API: Proof of Recycling</div>
+          <p class="text-sm mt-2 text-neutral-700" data-i18n="roadmap.r2d">Koppel fabrieksdata aan de blockchain voor on‑chain bewijzen.</p>
+        </div>
+        <div class="rounded-2xl p-5 bg-white shadow-smooth">
+          <div class="text-xs text-neutral-500">2027 · Q2</div>
+          <div class="font-semibold mt-1" data-i18n="roadmap.r3">NL‑recyclingfabriek live</div>
+          <p class="text-sm mt-2 text-neutral-700" data-i18n="roadmap.r3d">Grootschalige mechanische katoenrecycling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Price (widget-ready) -->
+  <section id="price" class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl md:text-2xl font-semibold" data-i18n="price.title">Live koers</h3>
+      <p class="mt-2 text-neutral-700 text-sm" data-i18n="price.desc">Dit blok kan Dexscreener / CoinGecko data tonen zodra CRC is gelist. Vul hieronder de adressen in.</p>
+      <div id="priceBox" class="mt-6 rounded-2xl bg-white p-6 shadow-smooth text-sm">
+        <div class="flex flex-wrap items-center gap-4">
+          <div>CRC / MATIC</div>
+          <div class="h-1 w-px bg-neutral-300"></div>
+          <div id="priceVal" class="font-semibold">Listing pending</div>
+          <div id="changeVal" class="text-xs text-neutral-500"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="py-16 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl md:text-2xl font-semibold">Resources</h3>
+      <ul class="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="#whitepaper" data-i18n="res.whitepaper">Whitepaper (NL/EN)</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://polygonscan.com/token/0x0E8e8387DAfB94DbcdCA41352c578631A3448B12" target="_blank" rel="noopener">Polygonscan (CRC)</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://t.me/+QV2NVTKtVAM1Nzhk" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://discord.gg/cA7dxPCq" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-neutral-500 flex flex-wrap items-center justify-between gap-3">
+      <div>© <span id="year"></span> CottonRecycleCoin</div>
+      <div data-i18n="footer.tag">Gebouwd voor transparantie • Polygon Mainnet</div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Config ----
+    const TOKEN_ADDRESS = "0x0E8e8387DAfB94DbcdCA41352c578631A3448B12";
+    const DEXSCREENER_PAIR = ""; // e.g., "polygon/0xPAIRADDRESS" once live
+
+    // ---- i18n strings ----
+    const I18N = {
+      nl: {
+        metaTitle: 'CottonRecycleCoin (CRC)',
+        metaDesc: 'CottonRecycleCoin – het deflationaire token voor blockchain‑gecertificeerde mechanische katoenrecycling.',
+        nav: { about: 'Over', tokenomics: 'Tokenomics', burn: 'Burn', roadmap: 'Roadmap', resources: 'Resources' },
+        cta: { buyTop: 'Koop CRC', whitepaper: 'Whitepaper', buyDex: 'Kopen op DEX', price: 'Live koers' },
+        hero: {
+          h1: { line1: 'Blockchain‑gecertificeerde katoenrecycling.', line2: 'Een deflationair token met echte utility.' },
+          p: 'CRC koppelt elke kilogram gerecycled katoen aan de blockchain. Hotels en wasserijen bewijzen duurzaamheid; holders profiteren van transparante, deflationaire tokenomics.',
+          chain: { label: 'Chain', value: 'Polygon Mainnet' },
+          ticker: { label: 'Ticker' },
+          supply: { label: 'Supply', value: '15.000.000.000 (deflationair)' },
+          placeholder: 'Hero‑visual — product/fabriek render'
+        },
+        buy: {
+          title: 'Koop CRC', desc: 'Swap op QuickSwap (Polygon). De knop vult CRC alvast in als output‑token. Controleer altijd het contractadres voordat je swapt.',
+          dex: 'DEX', btn: 'Koop op QuickSwap', pair: 'CRC / MATIC (Polygon)', wallet: 'Wallet', addmm: 'Voeg CRC toe aan MetaMask', mmhelp: 'Voegt token toe met juiste decimals & symbool', contract: 'Contract'
+        },
+        about: { title: 'Waarom CottonRecycleCoin?', body: 'De textielindustrie produceert enorme hoeveelheden afval en mist transparante prikkels om te recyclen. CRC tokeniseert gerecycled katoen en beloont échte circulariteit met blockchain‑bewijzen, geïntegreerd met een high‑tech mechanische recyclingfabriek in Nederland.' },
+        tokenomics: {
+          title: 'Tokenomics', total: 'Totale supply', totalv: '15.000.000.000 CRC', price: 'Startprijs', pricev: '€0,0001', dist: 'Verdeling', distv: '30% Rewards, 25% Investeerders, 20% Cotton Recycle B.V., 15% Liquiditeit, 10% Team', vesting: 'Vesting', vestingv: 'Team & Adviseurs 36 maanden', design: 'Ontwerp', designv: 'Deflationair via on‑chain burns', caption: 'Figuur 1: CRC Tokenomics verdeling', chartLabels: ['Recycling Rewards (30%)','Investeerders & Fonds (25%)','Cotton Recycle B.V. (20%)','Liquiditeit & Exchanges (15%)','Team & Adviseurs (10%)']
+        },
+        burn: { title: 'Burn‑mechanisme & waardegroei', tx: 'Transactie‑burn: 0,5% van elke CRC‑transactie gaat naar 0x000...dead.', factory: 'Fabriek‑gekoppelde burn: per 1.000 kg gerecycled katoen wordt 1% van de gebruikte CRC geburned.', impact: 'Effect: dalende supply + groeiende vraag creëert structurele schaarste.', result: 'Resultaat: een zelfversterkende, deflationaire economie die langetermijnwaarde beschermt en schaarste koppelt aan echte recyclingoutput.', caption: 'Figuur 2: Supply‑projectie met burn' },
+        roadmap: { title: 'Roadmap', r1: 'Whitepaper + DEX‑listing', r1d: 'Publiceer whitepaper, tokenlist, wallet‑assets (TrustWallet/Rabby).', r2: 'API: Proof of Recycling', r2d: 'Koppel fabrieksdata aan de blockchain voor on‑chain bewijzen.', r3: 'NL‑recyclingfabriek live', r3d: 'Grootschalige mechanische katoenrecycling.' },
+        price: { title: 'Live koers', desc: 'Dit blok kan Dexscreener / CoinGecko data tonen zodra CRC is gelist. Vul hieronder de adressen in.' },
+        res: { whitepaper: 'Whitepaper (NL/EN)' },
+        footer: { tag: 'Gebouwd voor transparantie • Polygon Mainnet' }
+      },
+      en: {
+        metaTitle: 'CottonRecycleCoin (CRC)',
+        metaDesc: 'CottonRecycleCoin – the deflationary token powering verified mechanical cotton recycling.',
+        nav: { about: 'About', tokenomics: 'Tokenomics', burn: 'Burn', roadmap: 'Roadmap', resources: 'Resources' },
+        cta: { buyTop: 'Buy CRC', whitepaper: 'Whitepaper', buyDex: 'Buy on DEX', price: 'Live price' },
+        hero: {
+          h1: { line1: 'Blockchain‑verified cotton recycling.', line2: 'A deflationary token with real‑world utility.' },
+          p: 'CRC links every kilogram of recycled cotton to the blockchain. Hotels and laundries prove sustainability; holders benefit from transparent, deflationary tokenomics.',
+          chain: { label: 'Chain', value: 'Polygon Mainnet' },
+          ticker: { label: 'Ticker' },
+          supply: { label: 'Supply', value: '15,000,000,000 (deflationary)' },
+          placeholder: 'Hero visual — product/factory render'
+        },
+        buy: { title: 'Buy CRC', desc: 'Swap on QuickSwap (Polygon). The button pre‑fills CRC as the output token. Always verify the contract address before swapping.', dex: 'DEX', btn: 'Buy on QuickSwap', pair: 'CRC / MATIC (Polygon)', wallet: 'Wallet', addmm: 'Add CRC to MetaMask', mmhelp: 'Adds token with correct decimals & symbol', contract: 'Contract' },
+        about: { title: 'Why CottonRecycleCoin?', body: 'The textile industry generates massive waste and lacks transparent incentives for recycling. CRC tokenizes recycled cotton and rewards real‑world circularity using blockchain proofs integrated with a next‑gen mechanical recycling facility in the Netherlands.' },
+        tokenomics: { title: 'Tokenomics', total: 'Total supply', totalv: '15,000,000,000 CRC', price: 'Start price', pricev: '€0.0001', dist: 'Distribution', distv: '30% Rewards, 25% Investors, 20% Cotton Recycle B.V., 15% Liquidity, 10% Team', vesting: 'Vesting', vestingv: 'Team & Advisors 36 months', design: 'Design', designv: 'Deflationary via on‑chain burns', caption: 'Figure 1: CRC Tokenomics Distribution', chartLabels: ['Recycling Rewards (30%)','Investors & Fund (25%)','Cotton Recycle B.V. (20%)','Liquidity & Exchanges (15%)','Team & Advisors (10%)'] },
+        burn: { title: 'Burn Mechanism & Value Growth', tx: 'Transactional burn: 0.5% of every CRC transaction is sent to 0x000...dead.', factory: 'Factory‑linked burn: per 1,000 kg recycled cotton, 1% of the CRC used is burned.', impact: 'Impact: decreasing supply + growing demand creates structural scarcity.', result: 'Result: a self‑reinforcing, deflationary economy that protects long‑term holder value while tying token scarcity to real‑world recycling throughput.', caption: 'Figure 2: Supply projection range with burn' },
+        roadmap: { title: 'Roadmap', r1: 'Whitepaper + DEX Listing', r1d: 'Publish whitepaper, tokenlist, wallet assets (TrustWallet/Rabby).', r2: 'API: Proof of Recycling', r2d: 'Connect factory data to blockchain for on‑chain proofs.', r3: 'NL Recycling Factory', r3d: 'Large‑scale mechanical cotton recycling.' },
+        price: { title: 'Live price', desc: 'This block can fetch from Dexscreener / CoinGecko once CRC is listed. Configure the addresses below.' },
+        res: { whitepaper: 'Whitepaper (EN/NL)' },
+        footer: { tag: 'Built for transparency • Polygon Mainnet' }
+      }
+    };
+
+    function setText(el, text){ if(el) el.innerHTML = text; }
+
+    function applyLang(lang){
+      const dict = I18N[lang] || I18N.nl;
+      document.documentElement.lang = lang;
+      document.title = dict.metaTitle;
+      const md = document.getElementById('meta-desc'); if (md) md.setAttribute('content', dict.metaDesc);
+
+      // toggle buttons
+      document.getElementById('btn-nl')?.classList.toggle('active', lang==='nl');
+      document.getElementById('btn-en')?.classList.toggle('active', lang==='en');
+
+      // nav & ctas
+      document.querySelectorAll('[data-i18n="nav.about"]').forEach(e=>setText(e, dict.nav.about));
+      document.querySelectorAll('[data-i18n="nav.tokenomics"]').forEach(e=>setText(e, dict.nav.tokenomics));
+      document.querySelectorAll('[data-i18n="nav.burn"]').forEach(e=>setText(e, dict.nav.burn));
+      document.querySelectorAll('[data-i18n="nav.roadmap"]').forEach(e=>setText(e, dict.nav.roadmap));
+      document.querySelectorAll('[data-i18n="nav.resources"]').forEach(e=>setText(e, dict.nav.resources));
+      document.querySelectorAll('[data-i18n="cta.buyTop"]').forEach(e=>setText(e, dict.cta.buyTop));
+      document.querySelectorAll('[data-i18n="cta.whitepaper"]').forEach(e=>setText(e, dict.cta.whitepaper));
+      document.querySelectorAll('[data-i18n="cta.buyDex"]').forEach(e=>setText(e, dict.cta.buyDex));
+      document.querySelectorAll('[data-i18n="cta.price"]').forEach(e=>setText(e, dict.cta.price));
+
+      // hero
+      setText(document.querySelector('[data-i18n="hero.h1.line1"]'), dict.hero.h1.line1);
+      setText(document.querySelector('[data-i18n="hero.h1.line2"]'), dict.hero.h1.line2);
+      setText(document.querySelector('[data-i18n="hero.p"]'), dict.hero.p);
+      setText(document.querySelector('[data-i18n="hero.chain.label"]'), dict.hero.chain.label);
+      setText(document.querySelector('[data-i18n="hero.chain.value"]'), dict.hero.chain.value);
+      setText(document.querySelector('[data-i18n="hero.ticker.label"]'), dict.hero.ticker.label||'Ticker');
+      setText(document.querySelector('[data-i18n="hero.supply.label"]'), dict.hero.supply.label);
+      setText(document.querySelector('[data-i18n="hero.supply.value"]'), dict.hero.supply.value);
+      setText(document.querySelector('[data-i18n="hero.placeholder"]'), dict.hero.placeholder);
+
+      // buy
+      setText(document.querySelector('[data-i18n="buy.title"]'), dict.buy.title);
+      setText(document.querySelector('[data-i18n="buy.desc"]'), dict.buy.desc);
+      setText(document.querySelector('[data-i18n="buy.dex"]'), dict.buy.dex);
+      setText(document.querySelector('[data-i18n="buy.btn"]'), dict.buy.btn);
+      setText(document.querySelector('[data-i18n="buy.pair"]'), dict.buy.pair);
+      setText(document.querySelector('[data-i18n="buy.wallet"]'), dict.buy.wallet);
+      setText(document.querySelector('[data-i18n="buy.addmm"]'), dict.buy.addmm);
+      setText(document.querySelector('[data-i18n="buy.mmhelp"]'), dict.buy.mmhelp);
+      setText(document.querySelector('[data-i18n="buy.contract"]'), dict.buy.contract);
+
+      // about
+      setText(document.querySelector('[data-i18n="about.title"]'), dict.about.title);
+      setText(document.querySelector('[data-i18n="about.body"]'), dict.about.body);
+
+      // tokenomics texts
+      setText(document.querySelector('[data-i18n="tokenomics.title"]'), dict.tokenomics.title);
+      setText(document.querySelector('[data-i18n="tokenomics.total"]'), dict.tokenomics.total);
+      setText(document.querySelector('[data-i18n="tokenomics.totalv"]'), dict.tokenomics.totalv);
+      setText(document.querySelector('[data-i18n="tokenomics.price"]'), dict.tokenomics.price);
+      setText(document.querySelector('[data-i18n="tokenomics.pricev"]'), dict.tokenomics.pricev);
+      setText(document.querySelector('[data-i18n="tokenomics.dist"]'), dict.tokenomics.dist);
+      setText(document.querySelector('[data-i18n="tokenomics.distv"]'), dict.tokenomics.distv);
+      setText(document.querySelector('[data-i18n="tokenomics.vesting"]'), dict.tokenomics.vesting);
+      setText(document.querySelector('[data-i18n="tokenomics.vestingv"]'), dict.tokenomics.vestingv);
+      setText(document.querySelector('[data-i18n="tokenomics.design"]'), dict.tokenomics.design);
+      setText(document.querySelector('[data-i18n="tokenomics.designv"]'), dict.tokenomics.designv);
+      setText(document.querySelector('[data-i18n="tokenomics.caption"]'), dict.tokenomics.caption);
+
+      // burn
+      setText(document.querySelector('[data-i18n="burn.title"]'), dict.burn.title);
+      setText(document.querySelector('[data-i18n="burn.tx"]'), dict.burn.tx);
+      setText(document.querySelector('[data-i18n="burn.factory"]'), dict.burn.factory);
+      setText(document.querySelector('[data-i18n="burn.impact"]'), dict.burn.impact);
+      setText(document.querySelector('[data-i18n="burn.result"]'), dict.burn.result);
+      setText(document.querySelector('[data-i18n="burn.caption"]'), dict.burn.caption);
+
+      // roadmap
+      setText(document.querySelector('[data-i18n="roadmap.title"]'), dict.roadmap.title);
+      setText(document.querySelector('[data-i18n="roadmap.r1"]'), dict.roadmap.r1);
+      setText(document.querySelector('[data-i18n="roadmap.r1d"]'), dict.roadmap.r1d);
+      setText(document.querySelector('[data-i18n="roadmap.r2"]'), dict.roadmap.r2);
+      setText(document.querySelector('[data-i18n="roadmap.r2d"]'), dict.roadmap.r2d);
+      setText(document.querySelector('[data-i18n="roadmap.r3"]'), dict.roadmap.r3);
+      setText(document.querySelector('[data-i18n="roadmap.r3d"]'), dict.roadmap.r3d);
+
+      // price
+      setText(document.querySelector('[data-i18n="price.title"]'), dict.price.title);
+      setText(document.querySelector('[data-i18n="price.desc"]'), dict.price.desc);
+
+      // resources & footer
+      setText(document.querySelector('[data-i18n="res.whitepaper"]'), dict.res.whitepaper);
+      setText(document.querySelector('[data-i18n="footer.tag"]'), dict.footer.tag);
+
+      // charts relabel
+      updateCharts(dict.tokenomics.chartLabels, lang);
+
+      localStorage.setItem('crc_lang', lang);
+    }
+
+    // ---- Charts ----
+    let tokenomicsChart, supplyChart;
+    function makeCharts(labels){
+      const tokenomicsCtx = document.getElementById('tokenomicsChart').getContext('2d');
+      if (tokenomicsChart) tokenomicsChart.destroy();
+      tokenomicsChart = new Chart(tokenomicsCtx, {
+        type: 'doughnut',
+        data: { labels, datasets: [{ data: [30,25,20,15,10] }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } }, cutout: '55%' }
+      });
+
+      const supplyCtx = document.getElementById('supplyChart').getContext('2d');
+      if (supplyChart) supplyChart.destroy();
+      supplyChart = new Chart(supplyCtx, {
+        type: 'line',
+        data: { labels: ['Year 0','1','2','3','4','5'], datasets: [
+          { label: 'Conservative', data: [15,14,13.5,13,12.5,12], tension: .35 },
+          { label: 'Optimistic', data: [15,14,13,12,11,10], tension: .35 }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { title: { display: true, text: 'Supply (Billions CRC)' } } } }
+      });
+    }
+    function updateCharts(labels, lang){ makeCharts(labels); }
+
+    // ---- Live price (Dexscreener) ----
+    async function fetchPrice() {
+      const priceEl = document.getElementById('priceVal');
+      const changeEl = document.getElementById('changeVal');
+      try {
+        if (!DEXSCREENER_PAIR) { priceEl.textContent = 'Listing pending'; return; }
+        const res = await fetch(`https://api.dexscreener.com/latest/dex/pairs/${DEXSCREENER_PAIR}`);
+        const json = await res.json();
+        const pair = json.pairs?.[0];
+        if (!pair) { priceEl.textContent = 'N/A'; return; }
+        priceEl.textContent = `$${Number(pair.priceUsd).toFixed(6)}`;
+        const ch = Number(pair.priceChange?.h24 || 0);
+        changeEl.textContent = `24h: ${ch > 0 ? '+' : ''}${ch.toFixed(2)}%`;
+        changeEl.className = `text-xs ${ch>=0 ? 'text-green-600' : 'text-red-600'}`;
+      } catch (e) { priceEl.textContent = 'Unavailable'; changeEl.textContent = ''; }
+    }
+
+    // ---- Buy: prefill QuickSwap link + show contract ----
+    const buyLink = document.getElementById('buyLink');
+    if (buyLink) { buyLink.href = `https://quickswap.exchange/#/swap?outputCurrency=${TOKEN_ADDRESS}&chain=polygon`; }
+    const caEl = document.getElementById('caCopy'); if (caEl) { caEl.textContent = TOKEN_ADDRESS; }
+
+    // ---- Add to MetaMask ----
+    const addBtn = document.getElementById('addToMM');
+    if (addBtn && window.ethereum) {
+      addBtn.addEventListener('click', async () => {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: { type: 'ERC20', options: { address: TOKEN_ADDRESS, symbol: 'CRC', decimals: 18, image: 'https://raw.githubusercontent.com/raymondschilperoort1-prog/cottonrecyclecoin/540d1a515b4bb808259749664a862a33717b2520/logo.png' } }
+          });
+        } catch(e){ console.error(e); }
+      });
+    }
+
+    // Init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    fetchPrice(); setInterval(fetchPrice, 30000);
+
+    // Language default: NL first unless user picked EN earlier
+    const stored = localStorage.getItem('crc_lang');
+    const initialLang = stored === 'en' ? 'en' : 'nl';
+    applyLang(initialLang);
+
+    // Language switcher events
+    document.getElementById('btn-nl').addEventListener('click', ()=>applyLang('nl'));
+    document.getElementById('btn-en').addEventListener('click', ()=>applyLang('en'));
+  </script>
+</body>
+</html>
+
