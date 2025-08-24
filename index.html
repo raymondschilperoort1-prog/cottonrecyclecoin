@@ -1,168 +1,294 @@
-<!DOCTYPE html>
-<html lang="nl">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cotton Recycle Coin</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CottonRecycleCoin (CRC)</title>
+  <meta name="description" content="CottonRecycleCoin – the deflationary token powering verified mechanical cotton recycling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <style>
-    :root {
-      --primary: #2d6a4f;
-      --accent: #d8f3dc;
-      --dark: #1b4332;
-      --light: #edf2f4;
-    }
-    body {
-      margin:0;
-      font-family: 'Segoe UI', sans-serif;
-      color: var(--dark);
-      background: var(--light);
-      line-height: 1.6;
-    }
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    header p {
-      margin: 0.5rem 0 1.5rem;
-      font-size: 1.2rem;
-    }
-    .btn {
-      background: var(--accent);
-      color: var(--dark);
-      padding: 0.8rem 1.2rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    section {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-    .feature {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-    footer {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
-      background: var(--dark);
-      color: var(--light);
-    }
-    @media (max-width:600px) {
-      header h1 { font-size: 2rem; }
-      header p { font-size: 1rem; }
-    }
+    html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); }
+    .shadow-smooth { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
   </style>
 </head>
-<body>
-
-<header>
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="https://raw.githubusercontent.com/raymondschilperoort1-prog/cottonrecyclecoin/540d1a515b4bb808259749664a862a33717b2520/logo.png" 
-         alt="Cotton Recycle Coin logo" 
-         style="max-width: 150px; height: auto; margin-bottom: 1rem;">
-    <h1>Cotton Recycle Coin</h1>
-    <p>Verweef duurzaamheid met blockchain – samen voor een groenere toekomst.</p>
-  </div>
-  <nav style="margin-top: 1rem;">
-    <a href="#features" class="btn">Voordelen</a>
-    <a href="#roadmap" class="btn">Roadmap</a>
-    <a href="#contact" class="btn">Contact</a>
-  </nav>
-</header>
-
-<section id="features">
-  <h2>Waarom Cotton Recycle Coin?</h2>
-  <div class="features">
-    <div class="feature">
-      <h3>Duurzaam</h3>
-      <p>Elke transactie ondersteunt katoenrecycling.</p>
+<body class="bg-neutral-50 text-neutral-900">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="CRC logo" class="h-9 w-9 rounded" onerror="this.src='https://raw.githubusercontent.com/raymondschilperoort1-prog/cottonrecyclecoin/540d1a515b4bb808259749664a862a33717b2520/logo.png'" />
+        <span class="font-semibold">CottonRecycleCoin</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" class="hover:text-black/80">About</a>
+        <a href="#tokenomics" class="hover:text-black/80">Tokenomics</a>
+        <a href="#burn" class="hover:text-black/80">Burn</a>
+        <a href="#roadmap" class="hover:text-black/80">Roadmap</a>
+        <a href="#resources" class="hover:text-black/80">Resources</a>
+      </nav>
+      <a href="#buy" class="inline-flex items-center gap-2 rounded-xl bg-black text-white text-sm px-4 py-2 shadow-smooth">Buy CRC</a>
     </div>
-    <div class="feature">
-      <h3>Transparant</h3>
-      <p>Open ledger, volledig controleerbaar.</p>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.04),transparent_60%)]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-bold leading-tight">Blockchain‑verified cotton recycling.<br><span class="text-neutral-500">A deflationary token with real‑world utility.</span></h1>
+          <p class="mt-6 text-neutral-700 max-w-xl">CRC is the token that links every kilogram of recycled cotton to the blockchain. Hotels and laundries prove sustainability; holders benefit from transparent, deflationary tokenomics.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#whitepaper" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth">Whitepaper</a>
+            <a href="#buy" class="rounded-xl bg-black text-white px-4 py-2 shadow-smooth">Buy on DEX</a>
+            <a href="#price" class="rounded-xl border border-neutral-300 bg-white px-4 py-2 shadow-smooth">Live price</a>
+          </div>
+          <dl class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+            <div><dt class="text-neutral-500">Chain</dt><dd class="font-semibold">Polygon Mainnet</dd></div>
+            <div><dt class="text-neutral-500">Ticker</dt><dd class="font-semibold">CRC</dd></div>
+            <div><dt class="text-neutral-500">Supply</dt><dd class="font-semibold">15,000,000,000 (deflationary)</dd></div>
+          </dl>
+        </div>
+        <div class="glass rounded-3xl p-6 shadow-smooth">
+          <div class="aspect-[16/10] rounded-2xl bg-white flex items-center justify-center">
+            <span class="text-neutral-400">Hero visual — add product shot / factory render here</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="feature">
-      <h3>Community-gedreven</h3>
-      <p>Gebouwd vanuit samenwerking en gedeelde waarden.</p>
+  </section>
+
+  <!-- Buy -->
+  <section id="buy" class="py-16 bg-white border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-semibold">Buy CRC</h2>
+      <p class="mt-3 text-neutral-700 text-sm">Swap on QuickSwap (Polygon). The button pre-fills CRC as the output token. Always verify the contract address before swapping.</p>
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        <a id="buyLink" target="_blank" rel="noopener" class="rounded-2xl p-5 bg-black text-white shadow-smooth flex items-center justify-between">
+          <div>
+            <div class="text-sm opacity-80">DEX</div>
+            <div class="text-lg font-semibold">Buy on QuickSwap</div>
+            <div class="text-xs opacity-80">CRC / MATIC (Polygon)</div>
+          </div>
+          <span aria-hidden>↗</span>
+        </a>
+        <button id="addToMM" class="rounded-2xl p-5 bg-white border border-neutral-300 shadow-smooth text-left">
+          <div class="text-sm text-neutral-500">Wallet</div>
+          <div class="text-lg font-semibold">Add CRC to MetaMask</div>
+          <div class="text-xs text-neutral-500">Adds token with correct decimals & symbol</div>
+        </button>
+      </div>
+      <p class="mt-4 text-xs text-neutral-500">Contract: <code id="caCopy" class="select-all"></code></p>
     </div>
-    <div class="feature">
-      <h3>Verhandelbaar</h3>
-      <p>Geregistreerd op meerdere beurzen, makkelijk in gebruik.</p>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-semibold">Why CottonRecycleCoin?</h2>
+      <p class="mt-4 text-neutral-700">The textile industry generates massive waste and lacks transparent incentives for recycling. CRC tokenizes recycled cotton and rewards real‑world circularity using blockchain proofs integrated with a next‑gen mechanical recycling facility in the Netherlands.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="roadmap" style="padding: 2rem 1rem; background: #f8f9fa;">
-  <h2 style="text-align: center;">Roadmap</h2>
-  <div style="max-width: 800px; margin: auto;">
-    <ul style="list-style: none; padding: 0;">
-      <li style="margin-bottom: 2rem;">
-        <h3>✅ Q2 2025 – Conceptontwikkeling</h3>
-        <p>Het idee voor de Cotton Recycle Coin werd geboren: een cryptomunt die duurzaamheid in de textielindustrie stimuleert door blockchain-technologie te koppelen aan katoenrecycling.</p>
-      </li>
-      <li style="margin-bottom: 2rem;">
-        <h3>✅ Q2 2025 – Branding en logo</h3>
-        <p>We ontwikkelden een uniek logo en visuele identiteit. Het basisdesign voor de website werd gemaakt, geïnspireerd op moderne crypto-platforms.</p>
-      </li>
-      <li style="margin-bottom: 2rem;">
-        <h3>✅ Q3 2025 – Websiteontwikkeling</h3>
-        <p>De officiële website werd gebouwd in HTML/CSS met een focus op gebruiksvriendelijkheid, responsive design en professionele uitstraling. Inclusief live koers-widget en een informatieve structuur.</p>
-      </li>
-      <li style="margin-bottom: 2rem;">
-        <h3>✅ Q3 2025 – Smart contract & tokencreatie</h3>
-        <p>Het smart contract werd uitgerold op de blockchain, de Cotton Recycle Coin is nu een officiële token met eigen supply en verhandelbare waarde.</p>
-      </li>
-      <li style="margin-bottom: 2rem;">
-        <h3>✅ Augustus 2025 – Live op exchange!</h3>
-        <p>De Cotton Recycle Coin is nu beschikbaar op exchanges! Je kunt de koers live volgen op de website via onze geïntegreerde koers-widget. De eerste community-leden zijn ingestapt!</p>
-      </li>
-      <li style="margin-bottom: 2rem;">
-        <h3>🔜 Q4 2025 – Marketing & communitygroei</h3>
-        <p>We starten met een intensieve marketingcampagne, bouwen aan partnerschappen in de duurzame textielsector en laten de community groeien via sociale media en events.</p>
-      </li>
-      <li>
-        <h3>🔜 2026 – Cotton Recycling DApp & Rewards</h3>
-        <p>We lanceren een eigen DApp waarmee bedrijven hun katoenrecycling kunnen registeren op de blockchain. Gebruikers ontvangen beloningen in CRC voor duurzame acties.</p>
-      </li>
-    </ul>
-  </div>
-</section>
+  <!-- Tokenomics with chart -->
+  <section id="tokenomics" class="py-16 bg-white border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="text-xl md:text-2xl font-semibold">Tokenomics</h3>
+          <ul class="mt-4 space-y-2 text-neutral-700 text-sm">
+            <li><strong>Total Supply:</strong> 15,000,000,000 CRC</li>
+            <li><strong>Start Price:</strong> €0.0001</li>
+            <li><strong>Distribution:</strong> 30% Rewards, 25% Investors, 20% Cotton Recycle B.V., 15% Liquidity, 10% Team</li>
+            <li><strong>Vesting:</strong> Team & Advisors 36 months</li>
+            <li><strong>Design:</strong> Deflationary via on‑chain burns</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-3xl p-6 shadow-smooth">
+          <canvas id="tokenomicsChart" class="!max-h-[360px]"></canvas>
+          <p class="mt-3 text-center text-xs text-neutral-500">Figure 1: CRC Tokenomics Distribution</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Burn mechanism -->
+  <section id="burn" class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="bg-white rounded-3xl p-6 shadow-smooth">
+          <div class="space-y-4 text-sm text-neutral-800">
+            <h3 class="text-xl md:text-2xl font-semibold">Burn Mechanism & Value Growth</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Transactional burn:</strong> 0.5% of every CRC transaction is sent to <code>0x000...dead</code>.</li>
+              <li><strong>Factory‑linked burn:</strong> per 1,000 kg recycled cotton, 1% of the CRC used is burned.</li>
+              <li><strong>Impact:</strong> decreasing supply + growing demand creates structural scarcity.</li>
+            </ul>
+            <p>Result: a self‑reinforcing, deflationary economy that protects long‑term holder value while tying token scarcity to real‑world recycling throughput.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl p-6 shadow-smooth">
+          <canvas id="supplyChart" class="!max-h-[320px]"></canvas>
+          <p class="mt-3 text-center text-xs text-neutral-500">Figure 2: Supply projection range with burn</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="contact">
-  <h2>Blijf op de hoogte</h2>
-  <p>Volg ons op sociale media of schrijf je in voor onze nieuwsbrief.</p>
-  <!-- Voeg hier je contactformulier of sociale icons toe -->
-</section>
+  <!-- Roadmap -->
+  <section id="roadmap" class="py-16 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl md:text-2xl font-semibold">Roadmap</h3>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl p-5 bg-white shadow-smooth">
+          <div class="text-xs text-neutral-500">2025 · Q3</div>
+          <div class="font-semibold mt-1">Whitepaper + DEX Listing</div>
+          <p class="text-sm mt-2 text-neutral-700">Publish whitepaper, tokenlist, wallet assets (TrustWallet/Rabby).</p>
+        </div>
+        <div class="rounded-2xl p-5 bg-white shadow-smooth">
+          <div class="text-xs text-neutral-500">2026 · Q2</div>
+          <div class="font-semibold mt-1">API: Proof of Recycling</div>
+          <p class="text-sm mt-2 text-neutral-700">Connect factory data to blockchain for on‑chain proofs.</p>
+        </div>
+        <div class="rounded-2xl p-5 bg-white shadow-smooth">
+          <div class="text-xs text-neutral-500">2027 · Q2</div>
+          <div class="font-semibold mt-1">NL Recycling Factory</div>
+          <p class="text-sm mt-2 text-neutral-700">Go‑live: large‑scale mechanical cotton recycling.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Cotton Recycle Coin. Alle rechten voorbehouden.</p>
-</footer>
+  <!-- Price (widget-ready) -->
+  <section id="price" class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl md:text-2xl font-semibold">Live Price</h3>
+      <p class="mt-2 text-neutral-700 text-sm">This block can fetch from Dexscreener / CoinGecko once CRC is listed. Configure the addresses below.</p>
+      <div id="priceBox" class="mt-6 rounded-2xl bg-white p-6 shadow-smooth text-sm">
+        <div class="flex flex-wrap items-center gap-4">
+          <div>CRC / MATIC</div>
+          <div class="h-1 w-px bg-neutral-300"></div>
+          <div id="priceVal" class="font-semibold">Listing pending</div>
+          <div id="changeVal" class="text-xs text-neutral-500"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Resources -->
+  <section id="resources" class="py-16 border-t border-neutral-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl md:text-2xl font-semibold">Resources</h3>
+      <ul class="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="#whitepaper">Whitepaper (EN/NL)</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://polygonscan.com/token/0x0E8e8387DAfB94DbcdCA41352c578631A3448B12" target="_blank" rel="noopener">Polygonscan (CRC)</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://t.me/+QV2NVTKtVAM1Nzhk" target="_blank" rel="noopener">Telegram</a></li>
+        <li><a class="block rounded-xl bg-white p-4 shadow-smooth hover:shadow" href="https://discord.gg/cA7dxPCq" target="_blank" rel="noopener">Discord</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-neutral-500 flex flex-wrap items-center justify-between gap-3">
+      <div>© <span id="year"></span> CottonRecycleCoin</div>
+      <div>Built for transparency • Polygon Mainnet</div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Config ----
+    const TOKEN_ADDRESS = "0x0E8e8387DAfB94DbcdCA41352c578631A3448B12"; // update if needed
+    const DEXSCREENER_PAIR = ""; // e.g., "polygon/0xPAIRADDRESS" once live
+
+    // ---- Tokenomics chart ----
+    const tokenomicsCtx = document.getElementById('tokenomicsChart').getContext('2d');
+    const tokenomicsChart = new Chart(tokenomicsCtx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          'Recycling Rewards (30%)',
+          'Investors & Fund (25%)',
+          'Cotton Recycle B.V. (20%)',
+          'Liquidity & Exchanges (15%)',
+          'Team & Advisors (10%)'
+        ],
+        datasets: [{ data: [30, 25, 20, 15, 10] }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'right' } },
+        cutout: '55%'
+      }
+    });
+
+    // ---- Supply projection chart ----
+    const supplyCtx = document.getElementById('supplyChart').getContext('2d');
+    const supplyChart = new Chart(supplyCtx, {
+      type: 'line',
+      data: {
+        labels: ['Year 0', '1', '2', '3', '4', '5'],
+        datasets: [
+          { label: 'Conservative', data: [15, 14, 13.5, 13, 12.5, 12], tension: 0.35 },
+          { label: 'Optimistic', data: [15, 14, 13, 12, 11, 10], tension: 0.35 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' } },
+        scales: { y: { title: { display: true, text: 'Supply (Billions CRC)' } } }
+      }
+    });
+
+    // ---- Live price (Dexscreener) ----
+    async function fetchPrice() {
+      const priceEl = document.getElementById('priceVal');
+      const changeEl = document.getElementById('changeVal');
+      try {
+        if (!DEXSCREENER_PAIR) { priceEl.textContent = 'Listing pending'; return; }
+        const res = await fetch(`https://api.dexscreener.com/latest/dex/pairs/${DEXSCREENER_PAIR}`);
+        const json = await res.json();
+        const pair = json.pairs?.[0];
+        if (!pair) { priceEl.textContent = 'N/A'; return; }
+        priceEl.textContent = `$${Number(pair.priceUsd).toFixed(6)}`;
+        const ch = Number(pair.priceChange?.h24 || 0);
+        changeEl.textContent = `24h: ${ch > 0 ? '+' : ''}${ch.toFixed(2)}%`;
+        changeEl.className = `text-xs ${ch>=0 ? 'text-green-600' : 'text-red-600'}`;
+      } catch (e) {
+        priceEl.textContent = 'Unavailable';
+        changeEl.textContent = '';
+      }
+    }
+    fetchPrice();
+    setInterval(fetchPrice, 30000);
+
+    // ---- Buy: prefill QuickSwap link + show contract ----
+    const buyLink = document.getElementById('buyLink');
+    if (buyLink) { buyLink.href = `https://quickswap.exchange/#/swap?outputCurrency=${TOKEN_ADDRESS}&chain=polygon`; }
+    const caEl = document.getElementById('caCopy');
+    if (caEl) { caEl.textContent = TOKEN_ADDRESS; }
+
+    // ---- Add to MetaMask ----
+    const addBtn = document.getElementById('addToMM');
+    if (addBtn && window.ethereum) {
+      addBtn.addEventListener('click', async () => {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: { type: 'ERC20', options: { address: TOKEN_ADDRESS, symbol: 'CRC', decimals: 18, image: 'https://raw.githubusercontent.com/raymondschilperoort1-prog/cottonrecyclecoin/540d1a515b4bb808259749664a862a33717b2520/logo.png' } }
+          });
+        } catch(e){ console.error(e); }
+      });
+    }
+
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
